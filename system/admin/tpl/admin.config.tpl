@@ -33,7 +33,9 @@
                     <!-- END: ADMIN_CONFIG_ROW_OPTION -->
                     <!-- END: ADMIN_CONFIG_ROW -->
                 </table>
-                <input type="submit" class="submit btn btn-primary" value="{PHP.L.Update}"/>
+                <div class="mt-3">
+                    <button type="submit" class="submit btn btn-primary" >{__('Update')}</button>
+                </div>
             </form>
         </div>
         <!-- END: EDIT -->

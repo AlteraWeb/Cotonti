@@ -9,13 +9,11 @@ $t = new XTemplate(cot_tplfile('page.admin', 'module', true));
 
 require_once cot_incfile('page', 'module');
 
-$adminpath[] = array(cot_url('admin', 'm=extensions'), cot::$L['Extensions']);
-$adminpath[] = array(cot_url('admin', 'm=extensions&a=details&mod='.$m), $cot_modules[$m]['title']);
-$adminpath[] = array(cot_url('admin', 'm='.$m), cot::$L['Administration']);
-$adminhelp = cot::$L['adm_help_page'];
-$adminsubtitle = cot::$L['Pages'];
+$adminhelp = $L['adm_help_page'];
+$adminsubtitle = $L['Pages'];
 
 $id = cot_import('id', 'G', 'INT');
+$sq = cot_import('sq', 'G', 'TXT');
 
 list($pg, $d, $durl) = cot_import_pagenav('d', cot::$cfg['maxrowsperpage']);
 
@@ -36,8 +34,10 @@ $sort_way = array(
 );
 $sqlsortway = $sortway;
 
+
+
 $filter = cot_import('filter', 'R', 'ALP');
-$filter = empty($filter) ? 'valqueue' : $filter;
+
 $filter_type = array(
     'all' => cot::$L['All'],
     'valqueue' => cot::$L['adm_valqueue'],
@@ -45,7 +45,6 @@ $filter_type = array(
     'expired' => cot::$L['adm_expired'],
     'drafts' => cot::$L['page_drafts'],
 );
-
 $urlParams = ['m' => 'page'];
 if ($sorttype != 'id') {
     $urlParams['sorttype'] = $sorttype;
@@ -61,27 +60,38 @@ if ($filter != 'valqueue') {
  * Common UrlParams without pagination
  * @deprecated
  */
-$common_params = http_build_query($urlParams, '', '&');
+$common_params = 'm=page&sorttype=' . $sorttype . '&sortway=' . $sortway . '&filter=' . $filter;
 
 if ($pg > 1) {
     $urlParams['d'] = $durl;
 }
 
-if ($filter == 'all') {
-    $sqlwhere = "1 ";
-} elseif ($filter == 'valqueue') {
-    $sqlwhere = "page_state=1";
-} elseif ($filter == 'validated') {
-    $sqlwhere = "page_state=0";
-} elseif ($filter == 'drafts') {
-    $sqlwhere = "page_state=2";
-} elseif ($filter == 'expired') {
-    $sqlwhere = "page_begin > {$sys['now']} OR (page_expire <> 0 AND page_expire < {$sys['now']})";
+switch ($filter) {
+    default:
+    case "all":
+        $sqlwhere = "1 ";
+        break;
+    case "valqueue":
+        $sqlwhere = "page_state=1";
+        break;
+    case "validated":
+        $sqlwhere = "page_state=0";
+        break;
+    case "drafts":
+        $sqlwhere = "page_state=2";
+        break;
+    case "expired":
+        $sqlwhere = "page_begin > {$sys['now']} OR (page_expire <> 0 AND page_expire < {$sys['now']})";
+        break;
 }
 
 $catsub = cot_structure_children('page', '');
 if (count($catsub) < count(cot::$structure['page'])) {
     $sqlwhere .= " AND page_cat IN ('" . join("','", $catsub) . "')";
+}
+
+if($sq){
+    $sqlwhere .= " AND ( page_title LIKE '%{$sq}%' OR page_desc LIKE '%{$sq}%' OR page_text LIKE '%{$sq}%' ) ";
 }
 
 $backUrl = cot_import('back', 'G', 'HTM');
