@@ -83,7 +83,9 @@ if (!COT_AJAX) {
 	}
 	$t = new XTemplate(cot_tplfile($mtpl_base, $mtpl_type));
 
-	/* === Hook === */
+    if(defined('COT_ADMIN')) include './system/admin/admin.header.main.php'; // apply header hook for admin (menu)
+
+    /* === Hook === */
 	foreach (cot_getextplugins('header.main') as $pl) {
 		include $pl;
 	}

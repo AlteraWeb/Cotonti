@@ -54,10 +54,31 @@ $R['admin_icon_usergroup1'] = '<img class="icon" src="system/admin/img/users.png
 $R['admin_exflds_array'] = '{$tplfile}: {$tags}; ';
 
 // Breadcrumbs
-$R['breadcrumbs_container'] = '{$crumbs}';
-$R['breadcrumbs_separator'] = ' / ';
+$R['breadcrumbs_container'] = '<ol class="breadcrumb">{$crumbs}</ol>';
+$R['breadcrumbs_separator'] = '';
 $R['breadcrumbs_link'] = '<a href="{$url}" title="{$title}">{$title}</a>';
 $R['breadcrumbs_plain'] = '{$title}';
-$R['breadcrumbs_crumb'] = '{$crumb}';
-$R['breadcrumbs_first'] = '{$crumb}';
-$R['breadcrumbs_last'] = '{$crumb}';
+$R['breadcrumbs_crumb'] = '<li class="breadcrumb-item">{$crumb}</li>';
+$R['breadcrumbs_first'] = '<li class="breadcrumb-item">{$crumb}</li>';
+$R['breadcrumbs_last'] = '<li class="breadcrumb-item active">{$crumb}</li>';
+
+// Pagination
+$R['link_pagenav_current'] = '<li class="page-item active"><a href="{$url}" class="page-link"{$event}{$rel}>{$num}</a></li>';
+$R['link_pagenav_first'] = '<li class="page-item"><a href="{$url}" class="page-link"{$event}{$rel}>' . $L['pagenav_first'] . '</a></li>';
+$R['link_pagenav_gap'] = '<li class="page-item"><a href="javascript:void(0);" class="page-link" disabled="">...</a></li>';
+$R['link_pagenav_last'] = '<li class="page-item"><a href="{$url}" class="page-link"{$event}{$rel}>' . $L['pagenav_last'] . '</a></li>';
+$R['link_pagenav_main'] = '<li class="page-item"><a href="{$url}" class="page-link"{$event}{$rel}>{$num}</a></li>';
+$R['link_pagenav_next'] = '<li class="page-item"><a href="{$url}" class="page-link"{$event}{$rel}>' . $L['pagenav_next'] . '</a></li>';
+$R['link_pagenav_prev'] = '<li class="page-item"><a href="{$url}" class="page-link"{$event}{$rel}>' . $L['pagenav_prev'] . '</a></li>';
+
+// Inputs
+$R['input_select'] = '<select class="form-select" name="{$name}" {$attrs}>{$options}</select>{$error}';
+$R['input_text'] = '<input type="text" name="{$name}" value="{$value}" class="form-control" {$attrs} />{$error}';
+$R['input_password'] = '<input type="password" name="{$name}" value="{$value}" class="form-control" {$attrs} />{$error}';
+$R['input_search'] = '<input type="search" name="{$name}" value="{$value}" class="form-control" {$attrs} />{$error}';
+$R['input_textarea'] = '<textarea name="{$name}" rows="{$rows}" cols="{$cols}" class="form-control" {$attrs}>{$value}</textarea>{$error}';
+$R['input_radio'] = '<label class="form-check"><input type="radio" name="{$name}" value="{$value}" class="form-check-input" {$checked}{$attrs} /> {$title}</label>';
+$R['input_checkbox'] = '<div class="form-check">
+                        <input type="checkbox" name="{$name}" value="{$value}" class="form-check-input" id="checkbox_{$name}" {$checked}{$attrs}>
+                        <label class="form-check-label" for="checkbox_{$name}">{$title}</label>
+                        </div>';

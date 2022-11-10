@@ -5859,6 +5859,16 @@ function cot_get_plural($plural, $lang, $is_frac = false)
 }
 
 /*
+ * Translate
+ * Return string from $L
+ */
+function __($str)
+{
+    global $L;
+    return isset($L[$str]) ? $L[$str] : $str;
+}
+
+/*
  * ============================================================================
 */
 

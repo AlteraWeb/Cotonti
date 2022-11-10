@@ -1,7 +1,7 @@
 <?php
 /* ====================
 [BEGIN_COT_EXT]
-Hooks=admin.home.sidepanel
+Hooks=admin.home.toppanel
 [END_COT_EXT]
 ==================== */
 

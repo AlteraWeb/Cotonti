@@ -101,7 +101,21 @@ $t->assign(array(
 ));
 
 /* === Hook === */
-foreach (cot_getextplugins('admin.home.mainpanel', 'R') as $pl) {
+foreach (cot_getextplugins('admin.home.toppanel', 'R') as $pl)
+{
+	$line = '';
+	include $pl;
+	if (!empty($line))
+	{
+		$t->assign('ADMIN_HOME_TOPPANEL', $line);
+		$t->parse('MAIN.TOPPANEL');
+	}
+}
+/* ===== */
+
+/* === Hook === */
+foreach (cot_getextplugins('admin.home.mainpanel', 'R') as $pl)
+{
 	$line = '';
 	include $pl;
 	if (!empty($line)) {
