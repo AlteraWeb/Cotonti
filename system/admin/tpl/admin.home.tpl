@@ -13,7 +13,7 @@
             <!-- BEGIN: TOPPANEL -->
             {ADMIN_HOME_TOPPANEL}
             <!-- END: TOPPANEL -->
-            <div class="col-xxl-4 col-md-6">
+            <div class="col-xxl-4 col-md-4">
                 <div class="card info-card revenue-card overflow-visible">
                     <div class="filter">
                         <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>

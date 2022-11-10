@@ -17,7 +17,6 @@
                             "views": {ADMIN_HOME_VIEWS},
                             "dates": {ADMIN_HOME_DATES}
                         }
-                        console.log(series)
                         new ApexCharts(document.querySelector("#hitsChart"), {
                             series: [{
                                 name: "{__('Hits')}",

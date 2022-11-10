@@ -18,4 +18,4 @@ defined('COT_CODE') or die('Wrong URL');
 require_once cot_incfile('userimages', 'plug');
 require_once cot_incfile('userimages', 'plug', 'resources');
 
-$t->assign(cot_userimages_tags($urr, 'USERS_EDIT_'));
+$t->assign(cot_userimages_tags($urr));

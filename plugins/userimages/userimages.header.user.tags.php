@@ -1,7 +1,7 @@
 <?php
 /* ====================
 [BEGIN_COT_EXT]
-Hooks=usertags.main
+Hooks=header.user.tags
 [END_COT_EXT]
 ==================== */
 
@@ -21,16 +21,19 @@ global $R;
 require_once cot_incfile('userimages', 'plug');
 require_once cot_incfile('userimages', 'plug', 'resources');
 
-if (is_array($user_data)) {
+
+if (is_array(cot::$usr["profile"])) {
     $userimages = cot_userimages_config_get();
 
     foreach ($userimages as $code => $settings) {
-        $uimage = $user_data['user_' . $code];
+        $uimage = cot::$usr["profile"]['user_' . $code];
         if ($code === 'avatar' && empty($uimage)) {
-            $gender = strtolower($user_data['user_gender']);
+            $gender = strtolower(cot::$usr["profile"]['user_gender']);
             $uimage = "datas/defaultav/{$gender}.png";
         }
-        $temp_array[$code . '_src'] = $uimage;
-        $temp_array[$code] = cot_userimages_build(is_file($uimage) ? $uimage : '', $code);
+        $t->assign([
+            "user_{$code}_src" => $uimage,
+            "user_{$code}" => cot_userimages_build(is_file($uimage) ? $uimage : '', $code)
+        ]);
     }
 }

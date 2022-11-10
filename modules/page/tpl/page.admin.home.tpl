@@ -1,5 +1,5 @@
 <!-- BEGIN: MAIN -->
-<div class="col-xxl-4 col-md-6">
+<div class="col-xxl-4 col-md-4">
 	<div class="card info-card sales-card overflow-visible">
 		<div class="filter">
 			<a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
