@@ -116,6 +116,11 @@ $L['page_status_pending'] = 'Pending';
 $L['page_status_approved'] = 'Approved';
 $L['page_status_published'] = 'Published';
 $L['page_status_expired'] = 'Expired';
+
+
+$L['page_status_moderated'] = 'On moderation';
+$L['page_status_hidden'] = 'Hidden';
+
 $L['page_linesperpage'] = 'Lines per page';
 $L['page_linesinthissection'] = 'Lines in this section';
 
