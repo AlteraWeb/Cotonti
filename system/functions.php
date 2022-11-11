@@ -5857,6 +5857,55 @@ function cot_get_plural($plural, $lang, $is_frac = false)
 			return 0;
 	}
 }
+function cot_create_tree(array &$elements, $parentId = 0)
+{
+    $branch = array();
+
+    foreach ($elements as $element) {
+        if ($element['parent_id'] === $parentId) {
+            $children = cot_create_tree($elements, $element['path']);
+            if ($children) {
+                $element['children'] = $children;
+            }
+            $branch[$element['path']] = $element;
+            unset($elements[$element['path']]);
+        }
+    }
+    return $branch;
+}
+function cot_structure_tree($area, $fields = ["title", "rpath", "href", "id"])
+{
+    global $structure;
+    $mode = 'all';
+
+    $arr = [];
+    if ($structure[$area])
+        foreach ($structure[$area] as $k => $v) {
+            $parent_array = @explode('.', $v["path"]);
+            array_pop($parent_array);
+
+            foreach ($fields as $field) {
+                if (isset($v[$field])) $arr[$k][$field] = $v[$field];
+            }
+
+            $arr[$k]["path"] = @$v["path"];
+            $arr[$k]["key"] = $k;
+            $arr[$k]["parent_id"] = implode(".", $parent_array) ?: 0;
+            $arr[$k]["href"] = cot_url($area, array('c' => @str_replace('.', '/', $v["path"])));
+            if (defined('COT_ADMIN')) {
+                $is_module = false;
+                if (cot_module_active($area)) {
+                    $is_module = true;
+                }
+                $v["code"] = explode('.', $v["path"]);
+                $v["code"] = end($v["code"]);
+                $arr[$k]["delete_href"] = cot_url('admin', 'm=structure&n=' . $area . '&mode=' . $mode . '&a=delete&id=' . $v["id"] . '&c=' . $v["code"] . '&' . cot_xg(), '', true);
+                $arr[$k]["rights_href"] = $is_module ? cot_url('admin', 'm=rightsbyitem&ic=' . $area . '&io=' . $v["code"], '', true) : '';
+                $arr[$k]["options_href"] = cot_url('admin', 'm=structure&n=' . $area . '&id=' . $v["id"] . '&' . cot_xg(), '', true);
+            }
+        }
+    return cot_create_tree($arr);
+}
 
 /*
  * Translate

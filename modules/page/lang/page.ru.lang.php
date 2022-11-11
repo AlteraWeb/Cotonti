@@ -116,10 +116,6 @@ $L['page_status_pending'] = 'На рассмотрении';
 $L['page_status_approved'] = 'Утверждена';
 $L['page_status_published'] = 'Опубликована';
 $L['page_status_expired'] = 'Устарела';
-
-$L['page_status_moderated'] = 'На модерации';
-$L['page_status_hidden'] = 'Скрытые';
-
 $L['page_linesperpage'] = 'Записей на страницу';
 $L['page_linesinthissection'] = 'Записей в разделе';
 

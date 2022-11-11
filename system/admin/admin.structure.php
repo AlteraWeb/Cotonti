@@ -219,7 +219,7 @@ else
                     }
                 }
             }
-            
+
 			($rstructure['structure_code'] != 'all') || cot_error('adm_structure_code_reserved', 'rstructurecode');
 			$rstructure['structure_code'] || cot_error('adm_structure_code_required', 'rstructurecode');
 			$rstructure['structure_path'] || cot_error('adm_structure_path_required', 'rstructurepath');
@@ -569,7 +569,10 @@ else
 
 	if (!$id && empty($al))
 	{
+        $cot_structure_tree = cot_structure_tree($n);
 		$t->assign(array(
+            'ADMIN_STRUCTURE_MAX_DEPTH' => 5,
+            'ADMIN_STRUCTURE_TREE' => json_encode($cot_structure_tree, JSON_UNESCAPED_UNICODE),
 			'ADMIN_STRUCTURE_PAGINATION_PREV' => $pagenav['prev'],
 			'ADMIN_STRUCTURE_PAGNAV' => $pagenav['main'],
 			'ADMIN_STRUCTURE_PAGINATION_NEXT' => $pagenav['next'],
@@ -601,7 +604,7 @@ else
             foreach (cot::$extrafields[cot::$db->structure] as $exfld) {
                 $exfld_val = cot_build_extrafields('rstructure' . $exfld['field_name'], $exfld, null);
                 $exfld_title = cot_extrafield_title($exfld, 'structure_');
-                
+
                 $t->assign(array(
                     'ADMIN_STRUCTURE_' . strtoupper($exfld['field_name']) => $exfld_val,
                     'ADMIN_STRUCTURE_' . strtoupper($exfld['field_name']) . '_TITLE' => $exfld_title,
