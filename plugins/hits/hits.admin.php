@@ -37,7 +37,7 @@ foreach (cot_getextplugins('hits.admin.first') as $pl)
 if ($f == 'year' || $f == 'month') {
 	$adminpath[] = array(cot_url('admin', 'm=other&p=hits&f=' . $f . '&v=' . $v), '(' . $v . ')');
 	$sql = cot::$db->query("SELECT * FROM $db_stats WHERE stat_name LIKE '" . cot::$db->prep($v) . "%' ORDER BY stat_name DESC");
-	
+
 	while ($row = $sql->fetch()) {
 		$y = mb_substr($row['stat_name'], 0, 4);
 		$m = mb_substr($row['stat_name'], 5, 2);
@@ -51,6 +51,12 @@ if ($f == 'year' || $f == 'month') {
 	/* === Hook - Part1 : Set === */
 	$extp = cot_getextplugins('hits.admin.loop');
 	/* ===== */
+
+    $tt->assign([
+        "ADMIN_HITS_YEAR_OR_MONTH_DATES" => json_encode(array_keys($hits_d)),
+        "ADMIN_HITS_YEAR_OR_MONTH_VIEWS" => json_encode(array_values($hits_d)),
+    ]);
+
 	foreach ($hits_d as $day => $hits) {
 		$percentbar = floor(($hits / $hits_d_max) * 100);
 		$tt->assign(
@@ -60,20 +66,19 @@ if ($f == 'year' || $f == 'month') {
 				'ADMIN_HITS_ROW_PERCENTBAR' => $percentbar,
 				'ADMIN_HITS_ROW_ODDEVEN' => cot_build_oddeven($ii)
 			));
-		
+
 		/* === Hook - Part2 : Include === */
 		foreach ($extp as $pl)
 		{
 			include $pl;
 		}
 		/* ===== */
-		
+
 		$tt->parse('MAIN.YEAR_OR_MONTH.ROW');
 		$ii ++;
 	}
-	
-	$tt->parse('MAIN.YEAR_OR_MONTH');
 
+	$tt->parse('MAIN.YEAR_OR_MONTH');
 } else {
 	$sqlmax = cot::$db->query("SELECT * FROM $db_stats WHERE stat_name LIKE '20%' ORDER BY stat_value DESC LIMIT 1");
 	if ($sqlmax->rowCount() > 0) {
@@ -112,6 +117,16 @@ if ($f == 'year' || $f == 'month') {
 		/* === Hook - Part1 : Set === */
 		$extp = cot_getextplugins('hits.admin.loop');
 		/* ===== */
+
+        $tt->assign([
+            "ADMIN_HITS_YEAR_DATES" => json_encode(array_keys($hits_y)),
+            "ADMIN_HITS_YEAR_VIEWS" => json_encode(array_values($hits_y)),
+            "ADMIN_HITS_MONTH_DATES" => json_encode(array_keys($hits_m)),
+            "ADMIN_HITS_MONTH_VIEWS" => json_encode(array_values($hits_m)),
+            "ADMIN_HITS_WEEK_DATES" => json_encode(array_keys($hits_w)),
+            "ADMIN_HITS_WEEK_VIEWS" => json_encode(array_values($hits_w)),
+        ]);
+
 		$ii = 0;
 		foreach ($hits_y as $year => $hits) {
 			$percentbar = floor(($hits / $hits_y_max) * 100);

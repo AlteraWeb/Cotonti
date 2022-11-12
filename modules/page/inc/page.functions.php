@@ -1014,3 +1014,37 @@ function cot_page_enum($categories = '', $count = 0, $template = '', $order = ''
 	return $page_query_html;
 }
 
+/**
+ * Select page cat for search from
+ *
+ * @param type $check
+ * @param type $name
+ * @param type $subcat
+ * @param type $hideprivate
+ * @param type $is_module
+ * @return type
+ * @global array $structure
+ */
+function cot_page_selectcat($check, $name, $subcat = '', $hideprivate = true)
+{
+    global $structure;
+
+    $structure['page'] = (is_array($structure['page'])) ? $structure['page'] : array();
+
+    $result_array = array();
+    foreach ($structure['page'] as $i => $x) {
+        $display = ($hideprivate) ? cot_auth('page', $i, 'R') : true;
+        if (!empty($subcat) && isset($structure['page'][$subcat])) {
+            $mtch = $structure['page'][$subcat]['path'] . ".";
+            $mtchlen = mb_strlen($mtch);
+            $display = (mb_substr($x['path'], 0, $mtchlen) == $mtch || $i === $subcat);
+        }
+
+        if (cot_auth('page', $i, 'R') && $i != 'all' && $display) {
+            $result_array[$i] = $x['tpath'];
+        }
+    }
+    $result = cot_selectbox($check, $name, array_keys($result_array), array_values($result_array), true);
+
+    return ($result);
+}
