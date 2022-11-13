@@ -157,7 +157,7 @@ a.thumbicons {
 a.thumbicons img {
    float: left;
    padding-right: 10px;
-   } 
+   }
 
 a.thumbicons:hover {background: #EDEFF4;}
 
@@ -229,7 +229,7 @@ input, select, button			{ padding:2px; }
     position: fixed;
     top: 50%;
     left: 50%;
-	
+
 	overflow: auto;
 
     background-color: #EEE;

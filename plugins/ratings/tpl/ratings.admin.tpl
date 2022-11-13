@@ -1,31 +1,52 @@
 <!-- BEGIN: MAIN -->
-		<h2>{PHP.L.Ratings}</h2>
-		{FILE "{PHP.cfg.themes_dir}/{PHP.usr.theme}/warnings.tpl"}
-			<div class="block button-toolbar">
-				<a title="{PHP.L.Configuration}" href="{ADMIN_RATINGS_URL_CONFIG}" class="button">{PHP.L.Configuration}</a>
-			</div>
-			<table class="cells">
+{FILE "{PHP.cfg.system_dir}/admin/tpl/warnings.tpl"}
+<!-- IF {ADMIN_RATINGS_TOTALVOTES} -->
+<div class="card">
+	<div class="card-body">
+		<table class="table">
+			<thead>
 				<tr>
-					<td class="coltop width10">{PHP.L.adm_area}</td>
-					<td class="coltop width10">{PHP.L.Code}</td>
-					<td class="coltop width20">{PHP.L.Date} (GMT)</td>
-					<td class="coltop width20">{PHP.L.Votes}</td>
-					<td class="coltop width20">{PHP.L.Rating}</td>
-					<td class="coltop width20">{PHP.L.Action}</td>
+					<th>{__('adm_area')}</th>
+					<th>{__('Code')}</th>
+					<th>{__('Date')} (GMT)</th>
+					<th>{__('Votes')}</th>
+					<th>{__('Rating')}</th>
+					<th>{__('Action')}</th>
 				</tr>
-<!-- BEGIN: RATINGS_ROW -->
+			</thead>
+			<tbody>
+				<!-- BEGIN: RATINGS_ROW -->
 				<tr>
-					<td class="textcenter">{ADMIN_RATINGS_ROW_RATING_AREA}</td>
-					<td class="textcenter">{ADMIN_RATINGS_ROW_RATING_CODE}</td>
-					<td class="textcenter">{ADMIN_RATINGS_ROW_CREATIONDATE}</td>
-					<td class="textcenter">{ADMIN_RATINGS_ROW_VOTES}</td>
-					<td class="textcenter">{ADMIN_RATINGS_ROW_RATING_AVERAGE}</td>
-					<td class="centerall action">
+					<td>{ADMIN_RATINGS_ROW_RATING_AREA}</td>
+					<td>{ADMIN_RATINGS_ROW_RATING_CODE}</td>
+					<td>{ADMIN_RATINGS_ROW_CREATIONDATE}</td>
+					<td>{ADMIN_RATINGS_ROW_VOTES}</td>
+					<td>{ADMIN_RATINGS_ROW_RATING_AVERAGE}</td>
+					<td>
 						<a title="{PHP.L.Delete}" href="{ADMIN_RATINGS_ROW_URL_DEL}" class="button">{PHP.L.Delete}</a>
 						<a title="{PHP.L.Open}" href="{ADMIN_RATINGS_ROW_RAT_URL}" class="button special">{PHP.L.Open}</a>
 					</td>
 				</tr>
-<!-- END: RATINGS_ROW -->
-			</table>
-			<p class="paging">{ADMIN_RATINGS_PAGINATION_PREV}{ADMIN_RATINGS_PAGNAV}{ADMIN_RATINGS_PAGINATION_NEXT}<span>{PHP.L.adm_ratings_totalitems}: {ADMIN_RATINGS_TOTALITEMS}, {PHP.L.Onpage}: {ADMIN_RATINGS_ON_PAGE}</span><span>{PHP.L.adm_ratings_totalvotes}: {ADMIN_RATINGS_TOTALVOTES}</span></p>
+				<!-- END: RATINGS_ROW -->
+			</tbody>
+		</table>
+	</div>
+</div>
+<div class="mt-5 d-flex align-center justify-content-between">
+	<div>
+		<ul class="pagination mb-1">{ADMIN_RATINGS_PAGINATION_PREV}{ADMIN_RATINGS_PAGNAV}{ADMIN_RATINGS_PAGINATION_NEXT}</ul>
+	</div>
+	<div class="small text-end">
+		{__('adm_ratings_totalitems')}: {ADMIN_RATINGS_TOTALITEMS},
+		{__('Onpage')}: {ADMIN_RATINGS_ON_PAGE}
+		{__('adm_ratings_totalvotes')}: {ADMIN_RATINGS_TOTALVOTES},
+	</div>
+</div>
+<!-- ELSE -->
+<div class="card p-3">
+	<div class="container-fluid py-5">
+		<h1 class="display-5 fw-bold">{__('None')}</h1>
+	</div>
+</div>
+<!-- ENDIF -->
 <!-- END: MAIN -->

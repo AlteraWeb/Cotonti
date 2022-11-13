@@ -1243,3 +1243,12 @@ h1, h2, h3, h4, h5, h6 {
 .table > :not(:first-child) {
     border-top: 0;
 }
+
+
+
+
+body > text{
+    position: absolute;
+    z-index: 1420;
+    background: #fff;
+}

@@ -1,53 +1,57 @@
 <!-- BEGIN: MAIN -->
-		<script type="text/javascript">
-			$(document).ready(function()
-			{
-				$('.moreinfo').hide();
-				$(".mor_info_on_off").click(function()
-				{
-					var kk = $(this).attr('id');
-					$('#'+kk).children('.moreinfo').slideToggle(100);
-				});
-			});
-		</script>
-		<h2>{PHP.L.tags_All}</h2>
-		{FILE "{PHP.cfg.themes_dir}/{PHP.cfg.defaulttheme}/warnings.tpl"}
-			<div class="block button-toolbar">
-				<a title="{PHP.L.Configuration}" href="{ADMIN_TAGS_CONFIG_URL}" class="button">{PHP.L.Configuration}</a>
+{FILE "{PHP.cfg.system_dir}/admin/tpl/warnings.tpl"}
+<div class="card">
+	<div class="card-body">
+		<div class="card-title">{__('viewdeleteentries')}</div>
+		<form name="sortfiltertag" action="{ADMIN_TAGS_FORM_ACTION}" method="post">
+			<div class="d-flex align-items-end gap-2">
+				<!-- IF {ADMIN_TAGS_TOTALITEMS} > 1 -->
+				<div>
+					<label for="exampleFormControlInput1" class="form-label">{__('adm_sort')}</label>
+					{ADMIN_TAGS_ORDER}
+				</div>
+				<div>{ADMIN_TAGS_WAY}</div>
+				<!-- ENDIF -->
+				<div>
+					<label for="exampleFormControlInput1" class="form-label">{__('Show')}</label>
+					{ADMIN_TAGS_FILTER}
+				</div>
+				<div>
+					<label for="exampleFormControlInput1" class="form-label">{__('Search')}</label>
+					<input name="tag" type="text" value="" class="form-control"/>
+				</div>
+				<div>
+					<button class="btn btn-primary" name="paction" type="submit">{__('Filter')}</button>
+				</div>
 			</div>
-			<h3>{PHP.L.viewdeleteentries}:</h3>
-			<table class="cells">
+		</form>
+		<table class="table">
+			<thead>
 				<tr>
-					<td class="right" colspan="5">
-						<form name="sortfiltertag" action="{ADMIN_TAGS_FORM_ACTION}" method="post">
-							<!-- IF {ADMIN_TAGS_TOTALITEMS} > 1 -->{PHP.L.adm_sort} {ADMIN_TAGS_ORDER} {ADMIN_TAGS_WAY};<!-- ENDIF --> {PHP.L.Show} {ADMIN_TAGS_FILTER}; {PHP.L.Search} <input name="tag" type="text" value="" />
-							<input name="paction" type="submit" value="{PHP.L.Filter}" />
-						</form>
-					</td>
+					<th>{__('Code')}</th>
+					<th>{__('adm_area')}</th>
+					<th>{__('Count')}</th>
+					<th> {__('adm_tag_item_area')}</th>
+					<th>{__('Action')}</th>
 				</tr>
+			</thead>
+			<tbody>
+				<!-- BEGIN: ADMIN_TAGS_ROW -->
 				<tr>
-					<td class="coltop width15">{PHP.L.Code}</td>
-					<td class="coltop width5">{PHP.L.adm_area}</td>
-					<td class="coltop width5">{PHP.L.Count}</td>
-					<td class="coltop" style="width:250px;"> {PHP.L.adm_tag_item_area}</td>
-					<td class="coltop width35">{PHP.L.Action}</td>
-				</tr>
-<!-- BEGIN: ADMIN_TAGS_ROW -->
-				<tr>
-					<td class="textcenter"><b>{ADMIN_TAGS_CODE}</b></td>
-					<td class="textcenter">{ADMIN_TAGS_AREA}</td>
-					<td class="textcenter">{ADMIN_TAGS_COUNT}</td>
+					<td><b>{ADMIN_TAGS_CODE}</b></td>
+					<td>{ADMIN_TAGS_AREA}</td>
+					<td>{ADMIN_TAGS_COUNT}</td>
 					<td>
 						<div id="mor_{PHP.ii}" class='mor_info_on_off'>
 							<span style="cursor:pointer;">{ADMIN_TAGS_ITEMS}</span><br />
 							<div class="moreinfo">
-<!-- BEGIN: ADMIN_TAGS_ROW_ITEMS -->
+								<!-- BEGIN: ADMIN_TAGS_ROW_ITEMS -->
 								{ADMIN_TAGS_ITEM_TITLE}<br />
-<!-- END: ADMIN_TAGS_ROW_ITEMS -->
+								<!-- END: ADMIN_TAGS_ROW_ITEMS -->
 							</div>
 						</div>
 					</td>
-					<td class="centerall action">
+					<td>
 						<form name="tagedit{PHP.ii}" action="{ADMIN_TAGS_FORM_ACTION}" method="post">
 							<input name="old_tag" type="hidden" value="{ADMIN_TAGS_CODE|htmlspecialchars($this)}" />
 							<input name="d" type="hidden" value="{PHP.d}" />
@@ -60,7 +64,29 @@
 						</form>
 					</td>
 				</tr>
-<!-- END: ADMIN_TAGS_ROW -->
-			</table>
-			<p class="paging">{ADMIN_TAGS_PAGINATION_PREV}{ADMIN_TAGS_PAGNAV}{ADMIN_TAGS_PAGINATION_NEXT}<span>{PHP.L.Total}: {ADMIN_TAGS_TOTALITEMS}, {PHP.L.Onpage}: {ADMIN_TAGS_COUNTER_ROW}</span></p>
+				<!-- END: ADMIN_TAGS_ROW -->
+			</tbody>
+		</table>
+		<div class="mt-5 d-flex align-center justify-content-between">
+			<div>
+				<ul class="pagination mb-1">{ADMIN_TAGS_PAGINATION_PREV}{ADMIN_TAGS_PAGNAV}{ADMIN_TAGS_PAGINATION_NEXT}</ul>
+			</div>
+			<div class="small text-end">
+				{__('Total')}: {ADMIN_TAGS_TOTALITEMS},
+				{__('Onpage')}: {ADMIN_TAGS_COUNTER_ROW}
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function()
+	{
+		$('.moreinfo').hide();
+		$(".mor_info_on_off").click(function()
+		{
+			var kk = $(this).attr('id');
+			$('#'+kk).children('.moreinfo').slideToggle(100);
+		});
+	});
+</script>
 <!-- END: MAIN -->
