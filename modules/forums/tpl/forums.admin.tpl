@@ -1,14 +1,8 @@
 <!-- BEGIN: MAIN -->
-<style>
-    ol.breadcrumb{
-        margin: 0;
-    }
-</style>
 <div class="mb-md-3">
     <a class="btn btn-sm btn-primary" title="{PHP.L.Configuration}" href="{ADMIN_FORUMS_URL_CONFIG}">{PHP.L.Configuration}</a>
     <a class="btn btn-sm btn-primary" href="{ADMIN_FORUMS_URL_STRUCTURE}">{PHP.L.Categories}</a>
 </div>
-
 <section class="section dashboard">
     <div class="row">
         <div class="col-xxl-4 col-md-4">
@@ -78,11 +72,11 @@
                     </td>
                     -->
                     <td class="uk-text-truncate ps-3">
-                        <div>{ADMIN_FORUMS_ROW_FORUMS}</div>
+                        <div class="no-margins">{ADMIN_FORUMS_ROW_FORUMS}</div>
                         <a href="{ADMIN_FORUMS_ROW_URL}">{ADMIN_FORUMS_ROW_TITLE}</a>
                     </td>
                     <td class="text-end">
-                        {ADMIN_FORUMS_ROW_POSTCOUNT}
+                        <span class="badge rounded-pill <!-- IF {ADMIN_FORUMS_ROW_POSTCOUNT} -->bg-primary"<!-- ELSE -->bg-dark-light<!-- ENDIF -->>{ADMIN_FORUMS_ROW_POSTCOUNT}</span>
                     </td>
                 </tr>
                 <!-- END: ADMIN_FORUMS_ROW_USER -->

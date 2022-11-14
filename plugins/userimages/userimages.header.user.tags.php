@@ -32,8 +32,8 @@ if (is_array(cot::$usr["profile"])) {
             $uimage = "datas/defaultav/{$gender}.png";
         }
         $t->assign([
-            "user_{$code}_src" => $uimage,
-            "user_{$code}" => cot_userimages_build(is_file($uimage) ? $uimage : '', $code)
+            "USER_{$code}_SRC" => $uimage,
+            "USER_{$code}" => cot_userimages_build(is_file($uimage) ? $uimage : '', $code)
         ]);
     }
 }

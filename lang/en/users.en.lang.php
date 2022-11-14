@@ -131,3 +131,6 @@ $themelang['usersprofile_Emailnotes'] = '<p><b>Email transition process (if emai
  * Users full name display format
  */
 $R['users_full_name'] = '{$firstname} {$lastname}';
+
+$L['user_list'] = 'User list';
+$L['user_group'] = 'User groups';

@@ -30,7 +30,7 @@ if (is_array($user_data)) {
             $gender = strtolower($user_data['user_gender']);
             $uimage = "datas/defaultav/{$gender}.png";
         }
-        $temp_array[$code . '_src'] = $uimage;
-        $temp_array[$code] = cot_userimages_build(is_file($uimage) ? $uimage : '', $code);
+        $temp_array[mb_strtoupper($code, "UTF-8") . '_SRC'] = $uimage;
+        $temp_array[mb_strtoupper($code, "UTF-8")] = cot_userimages_build(is_file($uimage) ? $uimage : '', $code);
     }
 }

@@ -359,7 +359,7 @@ class XTemplate
         // Comments
         $code = preg_replace('/{\*(.*)\*}/m', "", $code);
         // Translations
-        $code = preg_replace_callback('`\{__\((.*)\)\}`', function ($txt) {
+        $code = preg_replace_callback('/\{__\((.*)\)\}/U', function ($txt) {
             return __(str_replace('\'', '', $txt['1']));
         }, $code);
         // FILE includes

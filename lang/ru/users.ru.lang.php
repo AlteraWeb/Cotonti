@@ -129,3 +129,6 @@ $themelang['usersprofile_Emailnotes'] = '<p><b>Порядок смены e-mail 
  * Users full name display format
  */
 $R['users_full_name'] = '{$lastname} {$firstname} {$middlename}';
+
+$L['user_list'] = 'Список пользователей';
+$L['user_group'] = 'Группы пользователей';

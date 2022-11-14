@@ -32,7 +32,7 @@ foreach (cot_getextplugins('admin.main') as $pl) {
 /* ===== */
 
 $standard_admin = array('cache.disk', 'cache', 'config', 'extrafields', 'home', 'infos',
-	'log', 'other', 'extensions', 'rights', 'rightsbyitem', 'structure', 'urls', 'users');
+	'log', 'other', 'extensions', 'rights', 'rightsbyitem', 'structure', 'urls', 'usergroups');
 
 $inc_file = (empty($m)) ? 'home' : $m;
 $inc_file = (empty($s)) ? $inc_file : $inc_file.'.'.$s;
