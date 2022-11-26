@@ -25,31 +25,39 @@
 				</div>
 			</div>
 		</form>
-		<table class="table">
-			<thead>
+		<div class="table-responsive">
+			<table class="table" style="min-width: 900px;">
+				<thead>
 				<tr>
-					<th>{__('Code')}</th>
+					<th width="400">{__('Code')}</th>
 					<th>{__('adm_area')}</th>
 					<th>{__('Count')}</th>
-					<th> {__('adm_tag_item_area')}</th>
-					<th>{__('Action')}</th>
+					<th width="400"> {__('adm_tag_item_area')}</th>
+					<th width="100">{__('Action')}</th>
 				</tr>
-			</thead>
-			<tbody>
+				</thead>
+				<tbody>
 				<!-- BEGIN: ADMIN_TAGS_ROW -->
 				<tr>
-					<td><b>{ADMIN_TAGS_CODE}</b></td>
+					<td>
+						<form name="tagedit{PHP.ii}" action="{ADMIN_TAGS_FORM_ACTION}" method="post">
+							<input name="old_tag" type="hidden" value="{ADMIN_TAGS_CODE|htmlspecialchars($this)}" />
+							<input name="d" type="hidden" value="{PHP.d}" />
+							<input name="sorttype" type="hidden" value="{PHP.sorttype}" />
+							<input name="sortway" type="hidden" value="{PHP.sortway}" />
+							<input name="filter" type="hidden" value="{PHP.filter}" />
+							<div class="btn-group">
+								{ADMIN_TAGS_TAG}
+								<input name="action" type="submit" value="{PHP.L.Edit}" class="btn btn-primary" /><!--//<a title="{__('Edit')}" href="{ADMIN_TAGS_URL_FOR_EDIT}" target="_blank" class="button">{__('Edit')}</a>//-->
+							</div>
+						</form>
+					</td>
 					<td>{ADMIN_TAGS_AREA}</td>
 					<td>{ADMIN_TAGS_COUNT}</td>
 					<td>
-						<div id="mor_{PHP.ii}" class='mor_info_on_off'>
-							<span style="cursor:pointer;">{ADMIN_TAGS_ITEMS}</span><br />
-							<div class="moreinfo">
-								<!-- BEGIN: ADMIN_TAGS_ROW_ITEMS -->
-								{ADMIN_TAGS_ITEM_TITLE}<br />
-								<!-- END: ADMIN_TAGS_ROW_ITEMS -->
-							</div>
-						</div>
+						<!-- BEGIN: ADMIN_TAGS_ROW_ITEMS -->
+						<div class="no-margins">{ADMIN_TAGS_ITEM_TITLE}</div>
+						<!-- END: ADMIN_TAGS_ROW_ITEMS -->
 					</td>
 					<td>
 						<form name="tagedit{PHP.ii}" action="{ADMIN_TAGS_FORM_ACTION}" method="post">
@@ -58,15 +66,16 @@
 							<input name="sorttype" type="hidden" value="{PHP.sorttype}" />
 							<input name="sortway" type="hidden" value="{PHP.sortway}" />
 							<input name="filter" type="hidden" value="{PHP.filter}" />
-							{ADMIN_TAGS_TAG}
-							<input name="action" type="submit" value="{PHP.L.Edit}" /><!--//<a title="{PHP.L.Edit}" href="{ADMIN_TAGS_URL_FOR_EDIT}" target="_blank" class="button">{PHP.L.Edit}</a>//-->
-							<input name="action" type="submit" value="{PHP.L.Delete}" /><!--//<a title="{PHP.L.Delete}" href="{ADMIN_TAGS_DEL_URL}" class="ajax button">{PHP.L.Delete}</a>//-->
+							<div class="btn-group">
+								<input name="action" type="submit" value="{PHP.L.Delete}" class="btn btn-danger" /><!--//<a title="{__('Delete')}" href="{ADMIN_TAGS_DEL_URL}" class="ajax button">{__('Delete')}</a>//-->
+							</div>
 						</form>
 					</td>
 				</tr>
 				<!-- END: ADMIN_TAGS_ROW -->
-			</tbody>
-		</table>
+				</tbody>
+			</table>
+		</div>
 		<div class="mt-5 d-flex align-center justify-content-between">
 			<div>
 				<ul class="pagination mb-1">{ADMIN_TAGS_PAGINATION_PREV}{ADMIN_TAGS_PAGNAV}{ADMIN_TAGS_PAGINATION_NEXT}</ul>
@@ -78,15 +87,4 @@
 		</div>
 	</div>
 </div>
-<script type="text/javascript">
-	$(document).ready(function()
-	{
-		$('.moreinfo').hide();
-		$(".mor_info_on_off").click(function()
-		{
-			var kk = $(this).attr('id');
-			$('#'+kk).children('.moreinfo').slideToggle(100);
-		});
-	});
-</script>
 <!-- END: MAIN -->

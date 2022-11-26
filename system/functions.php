@@ -5916,10 +5916,21 @@ function __($str)
     global $L;
     return isset($L[$str]) ? $L[$str] : $str;
 }
-
 /*
  * ============================================================================
 */
+
+function vd(){
+    print "<pre>";
+    print_r(...func_get_args());
+    print "</pre>";
+}
+function dd(){
+    print "<pre>";
+    print_r(...func_get_args());
+    print "</pre>";
+    exit;
+}
 
 if (isset($cfg['customfuncs']) && $cfg['customfuncs'])
 {

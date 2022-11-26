@@ -27,10 +27,11 @@ if (is_array($user_data)) {
     foreach ($userimages as $code => $settings) {
         $uimage = $user_data['user_' . $code];
         if ($code === 'avatar' && empty($uimage)) {
-            $gender = strtolower($user_data['user_gender']);
+            $gender = strtolower($user_data['user_gender'] || "U");
             $uimage = "datas/defaultav/{$gender}.png";
         }
+
         $temp_array[mb_strtoupper($code, "UTF-8") . '_SRC'] = $uimage;
-        $temp_array[mb_strtoupper($code, "UTF-8")] = cot_userimages_build(is_file($uimage) ? $uimage : '', $code);
+        $temp_array[mb_strtoupper($code, "UTF-8")] = cot_userimages_build(($uimage && is_file($uimage)) ? $uimage : '', $code);
     }
 }

@@ -4,7 +4,7 @@
         <!-- BEGIN: EDIT -->
         <div class="card-body p-3">
             {ADMIN_CONFIG_EDIT_CUSTOM}
-            <form name="saveconfig" id="saveconfig" action="{ADMIN_CONFIG_FORM_URL}" method="post" class="ajax">
+            <form name="saveconfig" id="saveconfig" action="{ADMIN_CONFIG_FORM_URL}" method="post">
                 <table class="table align-middle">
                     <tr>
                         <td>{PHP.L.Parameter}</td>
@@ -20,13 +20,13 @@
                     </tr>
                     <!-- END: ADMIN_CONFIG_FIELDSET_BEGIN -->
                     <!-- BEGIN: ADMIN_CONFIG_ROW_OPTION -->
-                    <tr>
-                        <td>{ADMIN_CONFIG_ROW_CONFIG_TITLE}:</td>
-                        <td>
+                    <tr data-config="{PHP.row.config_name}">
+                        <td data-field="title">{ADMIN_CONFIG_ROW_CONFIG_TITLE}:</td>
+                        <td data-field="value">
                             {ADMIN_CONFIG_ROW_CONFIG}
                             <div class="text-muted small">{ADMIN_CONFIG_ROW_CONFIG_MORE}</div>
                         </td>
-                        <td class="text-end">
+                        <td class="text-end" data-field="reset">
                             <a href="{ADMIN_CONFIG_ROW_CONFIG_MORE_URL}" class="btn btn-outline-secondary">{PHP.L.Reset}</a>
                         </td>
                     </tr>

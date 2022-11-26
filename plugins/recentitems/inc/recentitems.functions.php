@@ -271,7 +271,7 @@ function cot_build_recentpages($template, $mode = 'recent', $maxperpage = 5, $d 
 		$recentitems->assign(cot_generate_pagetags($pag, 'PAGE_ROW_', $textlength));
 		$recentitems->assign(array(
 			'PAGE_ROW_SHORTTITLE' => htmlspecialchars($pag['page_title']),
-			'PAGE_ROW_OWNER' => cot_build_user($pag['page_ownerid'], htmlspecialchars($pag['user_name'])),
+			'PAGE_ROW_OWNER' => cot_build_user($pag['page_ownerid'], htmlspecialchars($pag['user_name'] || '')),
 			'PAGE_ROW_ODDEVEN' => cot_build_oddeven($jj),
 			'PAGE_ROW_NUM' => $jj
 		));

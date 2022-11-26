@@ -30,7 +30,6 @@
             <div class="card-body">
                 <h3 class="card-title">{PHP.L.Add}</h3>
                 <form name="addstructure" id="addstructure" action="{ADMIN_STRUCTURE_URL_FORM_ADD}" method="post"
-                      class="ajax"
                       enctype="multipart/form-data">
                     <div class="mb-2">
                         <label class="d-block">
@@ -96,7 +95,7 @@
                     </button>
                     <a href="{ADMIN_STRUCTURE_URL_EXTRAFIELDS}"
                        class="btn btn-sm btn-outline-primary">{PHP.L.adm_extrafields}</a>
-                    <a href="{ADMIN_PAGE_STRUCTURE_RESYNCALL}" class="ajax btn btn-sm btn-outline-primary special"
+                    <a href="{ADMIN_PAGE_STRUCTURE_RESYNCALL}" class="btn btn-sm btn-outline-primary special"
                        title="{PHP.L.adm_tpl_resyncalltitle}">{PHP.L.Resync}</a>
                     <!-- IF {PHP.cot_plugins_active.i18n} -->
                     <a href="{PHP|cot_url('plug', 'e=i18n&m=structure')}"
@@ -158,11 +157,11 @@
                     html += "<div class='dd-handle dd3-handle'></div> " +
                       "<div class='dd3-content'>" + item.title + "<div class='dd3-buttons'>" +
                       "<div class='btn-group'>" +
-                      "<a href='" + item.options_href + "' title='{PHP.L.Edit}' data-bs-toggle='tooltip' data-bs-placement='top' class='ajax btn btn-sm btn-primary'><i class='bi bi-pencil'></i></a>";
+                      "<a href='" + item.options_href + "' title='{PHP.L.Edit}' data-bs-toggle='tooltip' data-bs-placement='top' class='btn btn-sm btn-primary'><i class='bi bi-pencil'></i></a>";
                     if (item.rights_href) {
-                      html += "<a href='" + item.rights_href + "' title='{PHP.L.Rights}' data-bs-toggle='tooltip' ata-bs-placement='top' class='ajax btn btn-sm btn-warning text-white'><i class='bi bi-server'></i></a>";
+                      html += "<a href='" + item.rights_href + "' title='{PHP.L.Rights}' data-bs-toggle='tooltip' ata-bs-placement='top' class='btn btn-sm btn-warning text-white'><i class='bi bi-server'></i></a>";
                     }
-                    html += "<a href='" + item.delete_href + "' title='{PHP.L.Delete}' data-bs-toggle='tooltip' data-bs-placement='top' class='ajax btn btn-sm btn-danger'><i class='bi bi-trash'></i></a>" +
+                    html += "<a href='" + item.delete_href + "' title='{PHP.L.Delete}' data-bs-toggle='tooltip' data-bs-placement='top' class='btn btn-sm btn-danger'><i class='bi bi-trash'></i></a>" +
                       "<a href='" + item.href + "' title='{PHP.L.View}' data-bs-toggle='tooltip' data-bs-placement='top' target='_blank' class='btn btn-sm btn-secondary'><i class='bi bi-forward'></i></a>" +
                       "</div>" +
                       "</div></div>";
@@ -273,7 +272,7 @@
                         <div class="adminconfigmore">{ADMIN_CONFIG_ROW_CONFIG_MORE}</div>
                     </td>
                     <td class="centerall">
-                        <a href="{ADMIN_CONFIG_ROW_CONFIG_MORE_URL}" class="ajax btn btn-outline-secondary">
+                        <a href="{ADMIN_CONFIG_ROW_CONFIG_MORE_URL}" class="btn btn-outline-secondary">
                             {PHP.L.Reset}
                         </a>
                     </td>

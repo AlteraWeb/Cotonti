@@ -268,6 +268,7 @@ else
 		}
 		/* ===== */
 
+		$t->parse('MAIN.TABLE.EXTRAFIELDS_LIST');
 		$t->parse('MAIN.TABLE.EXTRAFIELDS_ROW');
 	}
 
